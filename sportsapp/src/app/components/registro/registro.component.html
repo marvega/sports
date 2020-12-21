@@ -1,0 +1,18 @@
+<form (ngSubmit)="onSubmit( f )" #f="ngForm">
+    <span class="text-danger" *ngIf="f.submitted && f.controls['email'].invalid">Please provide a valid email.</span>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <input type="email" required email class="form-control" [(ngModel)]="user.email" name="email" placeholder="Email">
+    </div>
+    <span class="text-danger" *ngIf="f.submitted && f.controls['name'].invalid">Name is required.</span>
+    <div class="mb-3">
+        <label for="inputName" class="form-label">Full name</label>
+        <input type="text" required minlength="2" class="form-control" [(ngModel)]="user.name" name="name" placeholder="Full name">
+    </div>
+    <span class="text-danger" *ngIf="f.submitted && f.controls['password'].invalid">Pass is required.</span>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input type="password" required minlength="6" class="form-control" [(ngModel)]="user.password" name="password" placeholder="Password">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

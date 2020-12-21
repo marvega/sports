@@ -8,7 +8,7 @@ const loginUser = async(request, response) => {
     let user = await User.findOne({ email });
     if (!user) {
         return response.status(422).send({
-            succes: false,
+            success: false,
             message: "Wrong credentials",
         });
     }
@@ -16,7 +16,7 @@ const loginUser = async(request, response) => {
     const validPassword = bcrypt.compareSync(password, user.password);
     if (!validPassword) {
         return res.status(422).json({
-            succes: false,
+            success: false,
             message: "Wrong credentials",
         });
     }
@@ -25,7 +25,7 @@ const loginUser = async(request, response) => {
     var token = jwt.sign({ user }, "testseed", { expiresIn: "2h" });
 
     response.json({
-        succes: true,
+        success: true,
         message: "Token created successfully",
         token,
     });
@@ -43,14 +43,14 @@ const createUser = async(request, response) => {
     } catch (err) {
         if (err.name === "MongoError" && err.code === 11000) {
             return response.status(422).send({
-                succes: false,
+                success: false,
                 message: "User already exist!",
             });
         }
     }
 
     response.json({
-        succes: true,
+        success: true,
         message: "User created successfully",
     });
 };
@@ -68,12 +68,12 @@ const updateUser = async(request, response) => {
         await User.updateOne({ email }, { name, email });
     } catch (err) {
         return response.status(422).send({
-            succes: false,
+            success: false,
             message: "Cannot update!",
         });
     }
     response.json({
-        succes: true,
+        success: true,
         message: "User updated successfully",
     });
 };
@@ -85,12 +85,12 @@ const deleteUser = async(request, response) => {
         await User.updateOne({ email }, { active: false });
     } catch (err) {
         return response.status(422).send({
-            succes: false,
+            success: false,
             message: "Cannot delete!",
         });
     }
     response.json({
-        succes: true,
+        success: true,
         message: "User deleted successfully",
     });
 };

@@ -12,14 +12,14 @@ const createDeporte = async(request, response) => {
     } catch (err) {
         if (err.name === "MongoError" && err.code === 11000) {
             return response.status(422).send({
-                succes: false,
+                success: false,
                 message: "Deporte already exist!",
             });
         }
     }
 
     response.json({
-        succes: true,
+        success: true,
         message: "Deporte created successfully",
     });
 };
@@ -37,12 +37,12 @@ const updateDeporte = async(request, response) => {
         await Deporte.updateOne({ name }, { name, img });
     } catch (err) {
         return response.status(422).send({
-            succes: false,
+            success: false,
             message: "Cannot update!",
         });
     }
     response.json({
-        succes: true,
+        success: true,
         message: "Deporte updated successfully",
     });
 };
@@ -54,12 +54,12 @@ const deleteDeporte = async(request, response) => {
         await Deporte.updateOne({ name }, { active: false });
     } catch (err) {
         return response.status(422).send({
-            succes: false,
+            success: false,
             message: "Cannot delete!",
         });
     }
     response.json({
-        succes: true,
+        success: true,
         message: "Deporte deleted successfully",
     });
 };

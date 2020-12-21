@@ -20,7 +20,7 @@ const createEvent = async(request, response) => {
     } catch (err) {
         if (err.name === "MongoError" && err.code === 11000) {
             return response.status(422).send({
-                succes: false,
+                success: false,
                 message: "Event already exist!",
             });
         } else {
@@ -29,7 +29,7 @@ const createEvent = async(request, response) => {
     }
 
     response.json({
-        succes: true,
+        success: true,
         message: "Evento created successfully",
     });
 };
@@ -64,12 +64,12 @@ const updateEvent = async(request, response) => {
     } catch (err) {
         console.log(err);
         return response.status(422).send({
-            succes: false,
+            success: false,
             message: "Cannot update!",
         });
     }
     response.json({
-        succes: true,
+        success: true,
         message: "Event updated successfully",
     });
 };
@@ -81,12 +81,12 @@ const deleteEvent = async(request, response) => {
         await Event.updateOne({ _id }, { active: false });
     } catch (err) {
         return response.status(422).send({
-            succes: false,
+            success: false,
             message: "Cannot delete!",
         });
     }
     response.json({
-        succes: true,
+        success: true,
         message: "Event deleted successfully",
     });
 };

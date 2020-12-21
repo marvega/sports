@@ -23,7 +23,7 @@ const createBooking = async(request, response) => {
     } catch (err) {
         if (err.name === "MongoError" && err.code === 11000) {
             return response.status(422).send({
-                succes: false,
+                success: false,
                 message: "Booking already exist!",
             });
         } else {
@@ -32,7 +32,7 @@ const createBooking = async(request, response) => {
     }
 
     response.json({
-        succes: true,
+        success: true,
         message: "Booking created successfully",
     });
 };
@@ -43,12 +43,12 @@ const deleteBooking = async(request, response) => {
         await Booking.updateOne({ _id }, { active: false });
     } catch (err) {
         return response.status(422).send({
-            succes: false,
+            success: false,
             message: "Cannot delete!",
         });
     }
     response.json({
-        succes: true,
+        success: true,
         message: "Booking deleted successfully",
     });
 };

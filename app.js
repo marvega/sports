@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 
 const urlmdb =
     "mongodb+srv://sports:HmGVtPkfasZRsUzF@cluster0.36fai.mongodb.net/sport?retryWrites=true&w=majority";
@@ -10,6 +11,7 @@ mongoose.connect(urlmdb, (err, res) => {
 });
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 app.use(require("./router/user.router"));
 app.use(require("./router/deporte.router"));

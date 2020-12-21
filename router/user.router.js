@@ -11,7 +11,7 @@ const { verificaToken } = require("../middleware/auth");
 
 const app = express();
 
-app.post("/usuario", [verificaToken, userRules], createUser);
+app.post("/usuario", [userRules], createUser);
 
 app.get("/usuarios", verificaToken, listUsers);
 
